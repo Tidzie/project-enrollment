@@ -1,0 +1,116 @@
+{% extends 'enrollment/base.html' %}
+{% load static %}
+
+{% block title %}Dashboard - {{ block.super }}{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <!-- Welcome Section -->
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="display-4 text-primary mb-3">Welcome to <span class="text-primary fw-bold">Bright Beginnings Preschool</span></h1>
+                    <p class="lead text-muted">Your one-stop platform for managing your child's preschool journey.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Parent Info Section -->
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="card-title mb-0">Parent Information</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4 class="text-primary">{{ parent.user.get_full_name }}</h4>
+                            <p class="text-muted">{{ parent.user.email }}</p>
+                            <p class="text-muted">{{ parent.phone }}</p>
+                            <p class="text-muted">{{ parent.address }}</p>
+                        </div>
+                        <div class="col-md-6 text-end">
+                            <a href="{% url 'enrollment:parent_update' user.parent.pk %}" class="btn btn-primary">
+                                <i class="fas fa-user-edit"></i> Update Profile
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Children Section -->
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="card-title mb-0">Your Children</h3>
+                </div>
+                <div class="card-body">
+                    {% if children %}
+                        <div class="row">
+                            {% for child in children %}
+                            <div class="col-md-4 mb-4">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <h4 class="card-title text-primary">{{ child.first_name }} {{ child.last_name }}</h4>
+                                        <p class="card-text">
+                                            <strong>Age:</strong> {{ child.age }}<br>
+                                            <strong>Gender:</strong> {{ child.gender }}
+                                        </p>
+                                        <div class="btn-group">
+                                            <a href="{% url 'enrollment:child_detail' child.pk %}" class="btn btn-primary">
+                                                <i class="fas fa-eye"></i> View
+                                            </a>
+                                            <a href="{% url 'enrollment:enroll_child' child.pk %}" class="btn btn-primary">
+                                                <i class="fas fa-graduation-cap"></i> Enroll
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <p class="text-muted">No children registered yet.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="card-title mb-0">Quick Actions</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <a href="{% url 'enrollment:child_create' %}" class="btn btn-primary btn-lg btn-block w-100 mb-3">
+                                <i class="fas fa-child"></i> Add Child
+                            </a>
+                        </div>
+                        <div class="col-md-4">
+                            <a href="{% url 'enrollment:enrollment_list' %}" class="btn btn-primary btn-lg btn-block w-100 mb-3">
+                                <i class="fas fa-list"></i> View All Enrollments
+                            </a>
+                        </div>
+                        <div class="col-md-4">
+                            <a href="{% url 'enrollment:parent_update' user.parent.pk %}" class="btn btn-primary btn-lg btn-block w-100 mb-3">
+                                <i class="fas fa-user-edit"></i> Update Profile
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

@@ -1,0 +1,167 @@
+{% extends 'enrollment/base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'enrollment/css/landing.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+{% endblock %}
+
+{% block title %}Welcome to Our Preschool{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-content">
+        <h1 class="animate__animated animate__fadeInDown">Welcome to Our Preschool</h1>
+        <p class="animate__animated animate__fadeInUp">Nurturing young minds with love, care, and quality education</p>
+        <a href="{% url 'enrollment:register' %}" class="cta-button animate__animated animate__fadeInUp">Enroll Now</a>
+    </div>
+</section>
+
+<!-- Programs Section -->
+<section class="programs">
+    <div class="container">
+        <h2>Our Programs</h2>
+        <div class="programs-grid">
+            <div class="program-card">
+                <div class="program-icon">
+                    <i class="fas fa-baby"></i>
+                </div>
+                <h3>Toddler Care</h3>
+                <p>For ages 2-3 years</p>
+                <ul>
+                    <li>Early learning activities</li>
+                    <li>Social development</li>
+                    <li>Basic motor skills</li>
+                </ul>
+            </div>
+            <div class="program-card">
+                <div class="program-icon">
+                    <i class="fas fa-child"></i>
+                </div>
+                <h3>Preschool</h3>
+                <p>For ages 3-4 years</p>
+                <ul>
+                    <li>Academic preparation</li>
+                    <li>Creative expression</li>
+                    <li>Social skills development</li>
+                </ul>
+            </div>
+            <div class="program-card">
+                <div class="program-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h3>Kindergarten</h3>
+                <p>For ages 4-5 years</p>
+                <ul>
+                    <li>Reading readiness</li>
+                    <li>Math foundations</li>
+                    <li>Science exploration</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Why Choose Us Section -->
+<section class="why-us">
+    <div class="container">
+        <h2>Why Choose Us</h2>
+        <div class="features-grid">
+            <div class="feature">
+                <i class="fas fa-heart"></i>
+                <h3>Nurturing Environment</h3>
+                <p>Safe and caring atmosphere for your child's growth</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-book"></i>
+                <h3>Quality Education</h3>
+                <p>Research-based curriculum and experienced teachers</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-users"></i>
+                <h3>Small Class Sizes</h3>
+                <p>Individual attention for every child</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-paint-brush"></i>
+                <h3>Creative Learning</h3>
+                <p>Arts, music, and hands-on activities</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="testimonials">
+    <div class="container">
+        <h2>What Parents Say</h2>
+        <div class="testimonials-slider">
+            <div class="testimonial">
+                <div class="quote">"The teachers are amazing and my child loves coming to school every day!"</div>
+                <div class="author">- Sarah M.</div>
+            </div>
+            <div class="testimonial">
+                <div class="quote">"I've seen incredible growth in my child's confidence and learning abilities."</div>
+                <div class="author">- John D.</div>
+            </div>
+            <div class="testimonial">
+                <div class="quote">"The best decision we made for our child's early education."</div>
+                <div class="author">- Lisa R.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section class="contact-section">
+    <div class="container">
+        <h2>Contact Us</h2>
+        <div class="contact-content">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <h3>Location</h3>
+                        <p>Masvingo Eastvale 29976</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <div>
+                        <h3>Phone</h3>
+                        <p>+263 777 413 117</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <h3>Email</h3>
+                        <p>talentmirimi63@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form">
+                <form method="post" action="{% url 'enrollment:contact' %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" class="form-control" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" class="form-control" placeholder="Your Message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://kit.fontawesome.com/your-font-awesome-kit.js"></script>
+{% endblock %} 
